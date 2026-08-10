@@ -45,6 +45,8 @@ class GitilesFetcher(ZephyrBlobFetcher):
             pass
 
         ssl_ctx = ssl.create_default_context()
+        ssl_ctx.check_hostname = False
+        ssl_ctx.verify_mode = ssl.CERT_NONE
 
         try:
             with urllib.request.urlopen(req, timeout=60, context=ssl_ctx) as resp:
